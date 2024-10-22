@@ -1,0 +1,104 @@
+package fuba;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class Fuba {
+
+    /*Esse programa ira simular a busca de seu Jose e Dona Maria  por fuba, 
+um dos seus cinco frangos. o programa simulara a busca representando seu José 
+como (J), dona maria por(D) e fubá por (F). o usuário devera informar a distância 
+inicial  de seu José e dona Maria e suas respectivas velocidades. */
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in); 
+
+        /*Aqui será onde o usuário deve declarar as variáveis. São identificadas, respectivamente, como: 
+        dist( distancia entre seu José e dona maria;
+        velJ(a velocidade de seu José)
+        e velD(velocidade de dona maria). 
+        Essas variáveis serão lidas como valores inteiros.*/
+        
+        int dist, velJ, velD, temp = 0;
+        dist = scan.nextInt();
+        velJ = scan.nextInt();
+        velD = scan.nextInt();
+        
+        // A posição de José se iniciará em 0, enquanto a de Dona maria será a distancia informada pelo usuário
+        // A posição de Fubá sera a metade da distâncai informada pelo usuário
+        int posJ = 0, posD = dist, posF = dist / 2;
+
+        // a condição (while (true)) foi utilizada para que o programa execute o loop enquanto não parar em um break       
+        
+        while (true) {
+            
+            /*Esse for é utilizado para desenhar cada linha indivudualmente, sendo i o contador, que enquanto for 
+            menor ou igual a distância informada pelo usuário, se repitirá*/
+            
+            for (int i = 0; i <= dist; i++) {
+                
+                //  if mostrara onde José estará, quando o contador for igual a posJ
+                
+                if (i == posJ) {
+                    System.out.print("J");
+                    
+                // else if mostrara onde dona Maria estará, quando o contador for igual a posD
+                
+                } else if (i == posD) {
+                    System.out.print("D");
+                    
+                //  else if mostrara onde Fubáestará, quando o contador for igual a posF
+                
+                } else if (posF == i) {
+                    System.out.print("F");
+                    
+                //  else if será responsável por mostrar a distância já percorrida
+                
+                } else if (i < posJ || i > posD) {
+                    System.out.print("-");
+                    
+                // else if será responsável por mostrar a distancia ainda não percorrida
+                
+                } else {
+                    System.out.print(".");
+                }
+            }
+            /*System.out.println(""); é utilizado apenas para quebrar a linha, está fora
+            do for pois será executado apos cada linha se desenhar por completo*/
+            
+            System.out.println("");
+            
+            /* if utilizado para testar se Fubá foi encontrado, a Lógica será que se a posicão 
+            de José for maior ou igual a de fuba, ele o encontrou, o break e utilizado para parar 
+            programa*/
+            
+            if (posJ >= posF) {
+                System.out.println("jose encontrou fuba");
+                break;
+                
+           /* caso contrario, o programa verificará se dona Maria o encontrou, caso a condição se
+           confirme, o programa tambem ira parar*/
+                
+            } else if (posD < posF) {
+                System.out.println("dona maria encontrou fuba");
+                break;
+            }
+            
+            //contadores responsáveis por variar a posiçao de seu jo´se e dona Maria
+            
+            posJ += velJ;
+            posD -= velD;
+            
+            // contador para Fubá  variar sua posição aleatoriamente, entre as velociades 3 e -3
+            posF += new Random().nextInt(-3, 3);
+            
+            //contador responsável por incrementar o tempo em 1 a cada loop repetido
+            temp++;
+
+        }
+        // quando o programa for encerrado pelo break, será informado o tempo gasto
+        
+        System.out.println("o tempo foi:" + temp);
+
+    }
+
+}
