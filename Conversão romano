@@ -1,0 +1,43 @@
+package exercicioaularomano;
+
+import java.util.Scanner;
+
+public class ExercicioaulaRomano {
+
+    public static String dezenas(int valorD) {
+      String valoresR[] = {"X","XX","XXX","XL", "L","LX", "LXX","LXXX","XC", "C"};
+       valorD--;
+        if (valorD >= 0 && valorD < 10 ) {
+            return valoresR[valorD];
+        }else{
+        return "";}
+    }
+    public static String unidades(int valorU) {
+      String valoresR[] = {"I","II","III","IV","V","VI","VII","VIII","IX"};
+       valorU--;
+        if (valorU >= 0 && valorU < 9 ) {
+            return valoresR[valorU];
+        }else{
+        return "";}
+    }
+    
+    
+    public static String imprimirRomano(int num) {
+        if (num > 100 || num < 1) {
+            return "fora";
+        } else {
+            int d = num / 10;
+            int u = num % 10;
+            
+            return dezenas(d)+ unidades(u);
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int valor = scan.nextInt();
+   
+        System.out.println(imprimirRomano(valor));
+    }
+
+}
